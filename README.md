@@ -5,7 +5,7 @@ Discord bot that pulls NBA stats and data.
 Player career stats
 
 Usage examples:
-![](data/boxscore)
-![](data/standings)
-![](data/roster)
-![](data/live)
+![](data/boxscore.png)
+![](data/standings.png)
+![](data/roster.png)
+![](data/live.png)
