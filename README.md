@@ -1,8 +1,5 @@
 ### Basketbot
-Discord bot that pulls NBA stats and data.
-
-**W.I.P**
-Player career stats
+**Discord bot that pulls NBA stats and data.**
 
 Usage examples:
 ![](data/boxscore.png)
