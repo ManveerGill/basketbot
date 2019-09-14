@@ -19,17 +19,17 @@ var temp;
 today();
 
 var T = new Twit({
-    consumer_key: 'khDF8DUC0iL3MiOlv4an9nP0S',
-    consumer_secret: '6GsDr4S6KKpZDjytEWoXXGuVcgemaaJBx62oq70YSuetaWKFIt',
-    access_token: '867463133039915009-WzGsGAwsBZubilVhecaFTTnWXwMeF7x',
-    access_token_secret: 'lnXNX1skLCbKOCGNTnmMkdB2HHgfScRNiZAnXMHE4QUTg'
+    consumer_key: REDACTED,
+    consumer_secret: REDACTED,
+    access_token: REDACTED,
+    access_token_secret: REDACTED
   });
 
 var stream = T.stream('statuses/filter', { follow: ['3444040513', '19923144'] });
 
 stream.on('tweet', function(data){
     if (data.user.id_str == '3444040513'){
-        bot.channels.get("572598054881067036").send("https://twitter.com/" + data.user.screen_name + "/status/" + data.id_str);
+        bot.channels.get(REDACTED).send("https://twitter.com/" + data.user.screen_name + "/status/" + data.id_str);
     }
 });
 
@@ -38,8 +38,8 @@ bot.on('message', (message) => {
 
     if (message.channel.type == "dm"){
         var author = message.author;
-        if (author != "<@572204160959643688>"){
-        bot.channels.get("562481794520317962").send(author + " " + message.content);
+        if (author != "REDACTED"){
+        bot.channels.get(REDACTED).send(author + " " + message.content);
         }
     }
 
@@ -381,4 +381,4 @@ function teamSimpleNameFromID (id) {
     return team ? team.simpleName : null;
 }
 
-bot.login('NTcyMjA0MTYwOTU5NjQzNjg4.XMY42g.RATmyezXKGm_9C8mudYa-vRmIvg');
+bot.login(REDACTED);
