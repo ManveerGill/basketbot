@@ -5,17 +5,16 @@ const {table, getBorderCharacters} = require('table');
 let date = require('date-and-time');
 
 const bot = new Discord.Client();
-const trigger = "?";
-
+const trigger = "?"; //Default trigger is set to ?
 var calendar_date = "";
 var season = "";
 
-today();
+today(); //Initialize today's date
 
 bot.on('message', (message) => {
-    bot.user.setActivity('Online and hooping');
+    bot.user.setActivity('Online and hooping'); //Give the bot a little blurb under its Discord online status
 
-    if (message.content.startsWith(trigger + "how2ball")){
+    if (message.content.startsWith(trigger + "how2ball")){ //Work in progress on having the bot DM a user with usage instructions
         message.author.send("```\nAdd instructions here.```");
     }
 
@@ -107,7 +106,7 @@ bot.on('message', (message) => {
             now = date.format(now, 'HHmm');
 
             try{
-                if (body.league.standard[index + 1].startDateEastern == calendar_date && now >= body.league.standard[index + 1].homeStartDate){
+                if (body.league.standard[index + 1].startDateEastern == calendar_date && now >= body.league.standard[index + 1].homeStartDate){ //Try and see if the team you entered is playing today and to then get the live boxscore
                     gameDate = calendar_date;
                     gameID = body.league.standard[index + 1].gameId;
                 }
@@ -312,7 +311,7 @@ function today(){
     });
 }
 
-function teamIdFromName (name) {
+function teamIdFromName (name) { //Function to find the teams unique ID given their name
     const n = name.toLowerCase();
     const team = teams.find(function (t) {
       return (
@@ -326,7 +325,7 @@ function teamIdFromName (name) {
     return team ? team.teamId : null;
 }
 
-function teamAbvFromID (id) {
+function teamAbvFromID (id) { //Find teams abbreviaiton given ID
     const team = teams.find(function (t) {
       return (
         t.teamId === id
@@ -336,7 +335,7 @@ function teamAbvFromID (id) {
     return team ? team.abbreviation : null;
 }
 
-function teamSimpleNameFromID (id) {
+function teamSimpleNameFromID (id) { //The teams simple name (Raptors/Bucks/Warriors etc)
     const team = teams.find(function (t) {
       return (
         t.teamId === id
