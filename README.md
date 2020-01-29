@@ -13,6 +13,7 @@ You'll need to create a new application under the Discord developer dashboard an
 The bot responds to various queries that are lead on by the default trigger '?'. The current supported query functions are as follows.
 * **live**
     : Retrieve the live score for every NBA game
+    
     ![](images/ikNggQr.png)
 * **boxscore**
     : Retrieve the full boxscore for a given NBA team
