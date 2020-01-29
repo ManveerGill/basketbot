@@ -3,48 +3,20 @@ const req = require('request');
 const teams = require('./data/teams.json');
 const {table, getBorderCharacters} = require('table');
 let date = require('date-and-time');
-var Twit = require('twit');
-var fs = require('fs');
-var text2png = require('text2png');
 
 const bot = new Discord.Client();
 const trigger = "?";
 
 var calendar_date = "";
 var season = "";
-var error;
-
-var temp;
 
 today();
 
-var T = new Twit({
-    consumer_key: 'khDF8DUC0iL3MiOlv4an9nP0S',
-    consumer_secret: '6GsDr4S6KKpZDjytEWoXXGuVcgemaaJBx62oq70YSuetaWKFIt',
-    access_token: '867463133039915009-WzGsGAwsBZubilVhecaFTTnWXwMeF7x',
-    access_token_secret: 'lnXNX1skLCbKOCGNTnmMkdB2HHgfScRNiZAnXMHE4QUTg'
-  });
-
-var stream = T.stream('statuses/filter', { follow: ['3444040513', '19923144'] });
-
-stream.on('tweet', function(data){
-    if (data.user.id_str == '3444040513'){
-        bot.channels.get("572598054881067036").send("https://twitter.com/" + data.user.screen_name + "/status/" + data.id_str);
-    }
-});
-
 bot.on('message', (message) => {
-    bot.user.setActivity('DM errors/suggestions');
-
-    if (message.channel.type == "dm"){
-        var author = message.author;
-        if (author != "<@572204160959643688>"){
-        bot.channels.get("562481794520317962").send(author + " " + message.content);
-        }
-    }
+    bot.user.setActivity('Online and hooping');
 
     if (message.content.startsWith(trigger + "how2ball")){
-        message.author.send("```\nPlaceholder```");
+        message.author.send("```\nAdd instructions here.```");
     }
 
     if (message.content.startsWith(trigger + "live")){
@@ -54,17 +26,20 @@ bot.on('message', (message) => {
         input = [["Away", ' ', 'Time', ' ', 'Home']];
 
         req({uri: "http://data.nba.net/10s/prod/v1/" + calendar_date + "/scoreboard.json", json: true},(error, response, body) => {
-            
+
             for (var i = 0; i < (body.games.length); i++){ //Loop through all the games
                 var scoreH, scoreV, home, away;
 
-                scoreH = body.games[i].hTeam.score; //Home and Visitor scores
-                scoreV = body.games[i].vTeam.score;
+                bodyHome = body.games[i].hTeam
+                bodyAway = body.games[i].vTeam
 
-                home = body.games[i].hTeam.triCode; //Home and Visitor team abbrevations 
-                away = body.games[i].vTeam.triCode;
+                scoreH = bodyHome.score; //Home and Visitor scores
+                scoreV = bodyAway.score;
+
+                home = bodyHome.triCode; //Home and Visitor team abbrevations 
+                away = bodyAway.triCode;
                 
-                var status = body.games[i].statusNum
+                var status = body.games[i].statusNum //Game status (started, OT, ended)
                 var time = body.games[i].period.current; //Current quarter
                 
                 if (status == 1){
@@ -327,16 +302,6 @@ bot.on('message', (message) => {
             });
 
     }
-
-    if (message.content.startsWith("test")){
-        const exampleEmbed = new Discord.RichEmbed()
-	.setColor('#0099ff')
-	.addField('Live Scores', temp)
-	.addBlankField()
-	.setTimestamp()
-
-        message.channel.send(exampleEmbed);
-    }
     
 });
 
@@ -381,4 +346,4 @@ function teamSimpleNameFromID (id) {
     return team ? team.simpleName : null;
 }
 
-bot.login('NTcyMjA0MTYwOTU5NjQzNjg4.XMY42g.RATmyezXKGm_9C8mudYa-vRmIvg');
+bot.login('NTcyMjA0MTYwOTU5NjQzNjg4.XX0yAg.MK7AIUaMNUlgIBcDMKlgI7bY5cE');
