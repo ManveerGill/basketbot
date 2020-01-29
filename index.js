@@ -346,4 +346,4 @@ function teamSimpleNameFromID (id) {
     return team ? team.simpleName : null;
 }
 
-bot.login('NTcyMjA0MTYwOTU5NjQzNjg4.XX0yAg.MK7AIUaMNUlgIBcDMKlgI7bY5cE');
+bot.login('');
