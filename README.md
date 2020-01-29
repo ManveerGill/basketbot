@@ -17,12 +17,15 @@ The bot responds to various queries that are lead on by the default trigger '?'.
     ![](images/ikNggQr.png)
 * **boxscore**
     : Retrieve the full boxscore for a given NBA team
+    
     ![](images/BSBUoxB.png)
 * **roster**
     : Retrieve the full roster for a given NBA team
+    
     ![](images/M4zIEaS.png)
 * **standings**
     : The current up to date standings for the Eastern and Western conference
+    
     ![](images/2fRl9O0.png)
 
 
